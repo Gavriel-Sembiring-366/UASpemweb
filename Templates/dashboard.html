@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/dashboard.css')}}">
+
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-logo">
+            <span class="logo"></span>
+            <h1>Maintenance</h1>
+        </div>
+        <div class="header-text">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Dashboard</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Daftar Peralatan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Laporan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Pencegahan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Perbaikan</a>
+        </div>
+    </div>  
+
+    <div class="content-container">
+        <div class = "going-project"> 
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Mesin</th>
+                        <th>ID Mesin</th>
+                        <th>Jenis Pekerjaan</th>
+                        <th>Bagian</th>
+                        <th>Tanggal Lapor</th>
+                        <th>Jam Lapor</th>
+                        <th> Status</th>
+                    </tr>
+                </thead>
+                {% for equipment in equipments %}
+                <tbody>
+                    <tr>
+                        <td>{{ equipment.id}}</td>
+                        <td>{{ equipment.nama_mesin }}</td>
+                        <td>{{ equipment.jenis_rusak }}</td>
+                        <td>asd</td>
+                        <td>sad</td>
+                        <td>sad</td>
+                        <td>sad</td>
+                        <td>sad</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-container">
+            <div class="info" id="info1">
+                <h1>Tambahkan Tugas</h1>
+                <div class="add-task">
+                    <table>
+                        <tr>
+                            <td>ID Mesin:</td>
+                            <td><input type="text" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Jenis Pekerjaan:</td>
+                            <td><input type="text" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Bagian:</td>
+                            <td><input type="text" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Tanggal Lapor:</td>
+                            <td><input type="email" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Jam Lapor:</td>
+                            <td><input type="email" /></td>
+                        </tr>
+                    </table>
+
+                    <!--<input type="submit" class="subsss" value="masukkan">-->
+
+                </div>
+            </div>
+
+            <div class="info" id="info2">
+                <!--  Somethin   -->
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
