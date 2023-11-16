@@ -49,24 +49,20 @@ def dashboard():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def masuk():
-    if request.method == "POST":
+    id_mesin = request.form.get('id_mesin')
+    nama_mesin = request.form.get('nama_mesin')
+    
+    kerusakan = Inputs(id_mesin, nama_mesin)
+    try:
+        db.session.add(kerusakan)
+        db.session.commit()
 
-        mesin = request.form.get('mesin')
-        jenis = request.form.get('jenis')
-
-        kerusakan = Inputs(mesin, jenis)
-        all_kerusakan = Inputs.query.all()
-        print(all_kerusakan)
+        equipments = Inputs.query.all()
         
-        try:
-            db.session.add_all(kerusakan)
-            db.session.commit()
-            return redirect("dashboard")
-        except:
-            return "There Is an issue adding it"
-    else:
-        tasks = Inputs.query.order_by(Inputs.id).all()
-        return render_template('dashboard.html', tasks=tasks)
+        return render_template('dashboard.html', equipments=equipments)
+    
+    except:
+        return "There Is an issue adding it"
 
 
 if __name__ == '__main__':

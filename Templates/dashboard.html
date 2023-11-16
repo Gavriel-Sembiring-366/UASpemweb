@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{url_for('static', filename='/css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+
 
 </head>
 <body>
@@ -57,16 +59,16 @@
         <div class="info-container">
             <div class="info" id="info1">
                 <h1>Tambahkan Tugas</h1>
-                <div class="add-task">
-                    <table>
+                <form action="{{ url_for('masuk') }}" method="post">
+                    <table class="add-task">
                         <tr>
                             <td>ID Mesin:</td>
-                            <td><input type="text" /></td>
+                            <td><input type="text" name="id_mesin" required/></td>
                         </tr>
 
                         <tr>
                             <td>Jenis Pekerjaan:</td>
-                            <td><input type="text" /></td>
+                            <td><input type="text" name="nama_mesin" required/></td>
                         </tr>
 
                         <tr>
@@ -85,13 +87,11 @@
                         </tr>
 
                         <tr>
-                            <td colspan="2" id="input-button"><button >Masukkan Data</button></td>
+                            <td colspan="2" id="input-button"><button type="submit">Masukkan Data</button></td>
                         </tr>
                     </table>
 
-                    <!--<input type="submit" class="subsss" value="masukkan">-->
-
-                </div>
+                </form>
             </div>
 
             <div class="info" id="info2">
@@ -101,7 +101,7 @@
     </div>
 
 
-
+    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>
