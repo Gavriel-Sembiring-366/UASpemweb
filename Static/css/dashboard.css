@@ -18,7 +18,6 @@ body {
     align-items: center;
     background-color: #191919;
     color: #fff;
-    height: 80px;
     width: 100%;
 }
 .header-logo{
@@ -82,6 +81,8 @@ body {
     margin-top: 1.2%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 15px;
+    border-bottom: black 5px solid;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
@@ -155,8 +156,11 @@ text-align:center;
 text-align:center;
 }
 
-/* end of form style */
+#input-button{
+    text-align: center;
+}
 
+/* end of form style */
 
 /* SCROLL STYLE START */
 ::-webkit-scrollbar {
@@ -181,10 +185,12 @@ text-align:center;
 }
 
 @media screen and (max-width: 1200px) {
-    .info-container{
-        margin-left: 0px;
-    }
+    .content-container{
+        width: 100%;
+        height: auto;
+        grid-template-columns: 1fr;
 
+    }
 
     .going-project{
         grid-column: 1;
@@ -199,6 +205,9 @@ text-align:center;
         grid-row: 2;
         width: 100%;
         height: 100%;
+        margin-left: 0px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 0fr;
     }
 
     .info{
@@ -207,13 +216,16 @@ text-align:center;
     }
 
     #info1{
+        width:100%;
         grid-column: 1;
         grid-row: 1;
         height: auto;
+        border-right: black solid 5px;
     }
     #info2{
-        grid-column: 1;
-        grid-row: 2;
+        width:100%;
+        grid-column: 2;
+        grid-row: 1;
         height: auto;
     }
   }
