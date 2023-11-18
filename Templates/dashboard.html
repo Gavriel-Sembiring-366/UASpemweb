@@ -25,35 +25,17 @@
     </div>  
 
     <div class="content-container">
-        <div class = "going-project"> 
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Mesin</th>
-                        <th>ID Mesin</th>
-                        <th>Jenis Pekerjaan</th>
-                        <th>Bagian</th>
-                        <th>Tanggal Lapor</th>
-                        <th>Jam Lapor</th>
-                        <th> Status</th>
-                    </tr>
-                </thead>
-                {% for equipment in equipments %}
-                <tbody>
-                    <tr>
-                        <td>{{ equipment.id}}</td>
-                        <td>{{ equipment.nama_mesin }}</td>
-                        <td>{{ equipment.jenis_rusak }}</td>
-                        <td>asd</td>
-                        <td>sad</td>
-                        <td>sad</td>
-                        <td>sad</td>
-                        <td>sad</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class = "going-project">
+            {% for equipment in equipments %}
+            <div class="card" style="width: 18rem; height: 200px;">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ equipment.id_mesin }} | {{ equipment.jenis_pekerjaan }} </h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+
+            </div>
+            {% endfor %}
         </div>
 
         <div class="info-container">
@@ -68,22 +50,22 @@
 
                         <tr>
                             <td>Jenis Pekerjaan:</td>
-                            <td><input type="text" name="nama_mesin" required/></td>
+                            <td><input type="text" name="jenis_pekerjaan" required/></td>
                         </tr>
 
                         <tr>
                             <td>Bagian:</td>
-                            <td><input type="text" /></td>
+                            <td><input type="text" name="bagian"/></td>
                         </tr>
 
                         <tr>
                             <td>Tanggal Lapor:</td>
-                            <td><input type="email" /></td>
+                            <td><input type="date" name="tanggal_lapor"/></td>
                         </tr>
 
                         <tr>
                             <td>Jam Lapor:</td>
-                            <td><input type="email" /></td>
+                            <td><input type="time" name="jam_lapor"/></td>
                         </tr>
 
                         <tr>
