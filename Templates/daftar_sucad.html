@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Suku Cadang</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/daftar_sucad.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-logo">
+            <span class="logo"></span>
+            <h1>Maintenance</h1>
+        </div>
+        <div class="header-text">
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Daftar Peralatan</a>
+            <a href="{{ url_for('daftar_sucad_redirect') }}">Daftar Sucad</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Pencegahan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Perbaikan</a>
+        </div>
+    </div>  
+
+    <div class="content-container">
+        <div class = "going-project">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>ID SuCad</th>
+                        <th>Nama Sucad</th>
+                        <th>Stok Minimum Suku Cadang</th>
+                        <th>Stok Aktual Suku Cadang</th>
+                    </tr>
+                </thead>
+                {% for sucad in sucads %}
+                <tbody>
+                    <tr>
+                        <td>no</td>
+                        <td>{{ sucad.id_SukuCadang}}</td>
+                        <td>{{ sucad.nama_SukuCadang }}</td>
+                        <td>{{ sucad.stok_minimum_SukuCadang }}</td>
+                        <td>{{ sucad.stok_aktual_SukuCadang }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-container">
+            <div class="info" id="info1">
+                <h1>Tambahkan Suku Cadang</h1>
+                <form action="{{ url_for('input_daftar_sucad') }}" method="post">
+                    <table class="tambah-sucad">
+                        <tr>
+                            <td>ID Suku Cadang:</td>
+                            <td><input type="text" name="sucad_id" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Nama Suku Cadang:</td>
+                            <td><input type="text" name="sucad_nama" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Minimum Stok:</td>
+                            <td><input type="text" name="sucad_min_stok" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Stok Aktual:</td>
+                            <td><input type="text" name="sucad_aktual_stok" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" id="input-button"><button type="submit">Masukkan Data</button></td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+
+            <div class="info" id="info2">
+                <!--  Somethin   -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

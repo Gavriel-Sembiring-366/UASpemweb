@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+
+
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-logo">
+            <span class="logo"></span>
+            <h1>Maintenance</h1>
+        </div>
+        <div class="header-text">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Dashboard</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Daftar Peralatan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Laporan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Pencegahan</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Perbaikan</a>
+        </div>
+    </div>  
+
+    <div class="content-container">
+        <div class = "going-project">
+            
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="info-container">
+            <div class="info" id="info1">
+                <h1>Tambahkan Tugas</h1>
+                <form action="{{ url_for('masuk') }}" method="post">
+                    <table class="add-task">
+                        <tr>
+                            <td>ID Mesin:</td>
+                            <td><input type="text" name="id_mesin" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Bagian:</td>
+                            <td><input type="text" name="bagian" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Jenis Pekerjaan:</td>
+                            <td>  
+                                <select name="jenis_pekerjaan" id="jenis_pekerjaan">
+                                    <option value="mekanikal">Mekanikal</option>
+                                    <option value="elektrikal">Elektrikal</option>
+                                    <option value="sipil">Sipil</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Tanggal Lapor:</td>
+                            <td><input type="date" name="tanggal_lapor" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Jam Lapor:</td>
+                            <td><input type="time" name="jam_lapor" required/></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" id="input-button"><button type="submit">Masukkan Data</button></td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+
+            <div class="info" id="info2">
+                <!--  Somethin   -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

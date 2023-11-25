@@ -1,0 +1,250 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-right: 0px;
+    overflow-x: hidden;
+    background-color: #fffcfc;
+    height: 100vh;
+}
+
+/* HEADER START */
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #191919;
+    color: #fff;
+    width: 100vw;
+    height: 70px;
+}
+.header-logo{
+    display: flex;
+    margin-left: 2%;
+    width: 700px;
+}
+.logo {
+    height: 30px;
+    width: 30px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.header-text {
+    display: flex;
+    align-items: center;
+    /* margin-right: 1%;  */
+    transform: translateX(1%);
+}
+.header-text a {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* HEADER END */
+
+/* MAIN CONTENT START */
+.content-container {
+    display: flex;
+    background-color: #716565;
+    color: #fff;
+    height: auto;
+    width: 100vw;
+    display: grid;
+    padding-left: 5px;
+    grid-template-columns: 2fr 1fr;
+}
+
+
+
+/* TABLE START */
+.going-project{
+    display:flex;
+    flex-wrap: wrap;
+    padding: 10px 10px 10px 10px;
+    overflow-y: scroll;
+    background-color: #abababaa ;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    border-right: #3e3c3c solid 5px;
+
+    grid-column: 1;
+    grid-row: 1;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin-top: 1.2%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    border-bottom: black 5px solid;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    overflow-y:scroll;
+    display:block;
+    height: 43vw;
+}
+.styled-table thead th{
+    position: sticky;
+    top: 0px;
+    background-color: #333;
+}
+.styled-table thead tr {
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,td{
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+/* TABLE END */
+
+.info-container{
+    display: grid;
+    background-color: #6a6a6a;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    row-gap: 5px;
+    grid-column: 2;
+    grid-row: 1;
+    grid-template-rows: 1fr 1fr;
+
+}
+.info{
+    background-color: #abababaa;
+    width: 100%;
+
+    overflow-y: scroll;
+    display: grid;
+}
+#info1{
+    grid-row: 1;
+    grid-column: 1;
+}
+#info1 select{
+    width: 200px;
+    height: 25px;
+}
+#info1 input{
+    width: 200px;
+}
+
+
+#info2{
+    grid-row: 2;
+    grid-column: 1;
+}
+
+/* Form Style */
+
+.tambah-sucad{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tambah-sucad td {
+    padding: 0 15px 20px 0;
+}
+
+.tambah-sucad input {
+    height: 25px;
+}
+
+
+#submit{
+text-align:center;
+}
+
+#info1 h1{
+margin-top: 20px;
+margin-bottom: 20px;
+text-align:center;
+height: auto;
+}
+
+#input-button{
+    text-align: center;
+}
+
+/* end of form style */
+
+/* SCROLL STYLE START */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 1 1 1px rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(80, 80, 80);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+
+@media screen and (max-width: 1200px) {
+    .content-container{
+        width: 100%;
+        height: auto;
+        grid-template-columns: 1fr;
+
+    }
+
+    .going-project{
+        grid-column: 1;
+        grid-row: 1;
+        width: 100%;
+        height: 100%;
+        margin-left: 0;
+    }
+
+    .info-container{
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+        height: 100%;
+        margin-left: 0px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 0fr;
+    }
+
+    .info{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    #info1{
+        width:100%;
+        grid-column: 1;
+        grid-row: 1;
+        height: auto;
+        border-right: black solid 5px;
+    }
+    #info2{
+        width:100%;
+        grid-column: 2;
+        grid-row: 1;
+        height: auto;
+    }
+  }
