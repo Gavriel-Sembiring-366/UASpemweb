@@ -13,7 +13,42 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
 
-class Inputs(db.Model):
+mesin_sucad = db.Table(
+    'mesin_sucad',
+    db.Column('mesin_id', db.String(50), db.ForeignKey('Mesin.id_mesin'), primary_key=True),
+    db.Column('sucad_id', db.String(50), db.ForeignKey('SukuCadang.id_SukuCadang'), primary_key=True)
+)
+
+class Mesin(db.Model):
+    __tablename__ = 'Mesin'
+    id_mesin = db.Column(db.String(50), nullable=False, unique=True, primary_key=True, autoincrement=False)
+    nama_mesin = db.Column(db.String(255), nullable=False)
+    periode_cek_mesin = db.Column(db.String(50), nullable=False)
+    sucad = db.relationship('SukuCadang', secondary=mesin_sucad, backref = 'suku_cadang')
+
+    # Define the relationship with SukuCadang
+
+    def __init__(self, id_mesin, periode_cek_mesin, nama_mesin):
+        self.id_mesin = id_mesin
+        self.nama_mesin = nama_mesin
+        self.periode_cek_mesin = periode_cek_mesin
+
+class SukuCadang(db.Model):
+    __tablename__ = 'SukuCadang'
+    id_SukuCadang = db.Column(db.String(50), nullable=False, unique=True, primary_key=True, autoincrement=False)
+    nama_SukuCadang = db.Column(db.String(255), nullable=False)
+    stok_minimum_SukuCadang = db.Column(db.String(50), nullable=False)
+    stok_aktual_SukuCadang = db.Column(db.String(50), nullable=False)
+
+    # Define the relationship with Mesin
+
+    def __init__(self, id_SukuCadang, nama_SukuCadang, stok_minimum_SukuCadang, stok_aktual_SukuCadang):
+        self.id_SukuCadang = id_SukuCadang
+        self.nama_SukuCadang = nama_SukuCadang
+        self.stok_minimum_SukuCadang = stok_minimum_SukuCadang
+        self.stok_aktual_SukuCadang = stok_aktual_SukuCadang
+
+class Kerusakan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     id_mesin = db.Column(db.Text(200), nullable=False)
@@ -28,10 +63,6 @@ class Inputs(db.Model):
         self.bagian = bagian
         self.tanggal_lapor = tanggal_lapor
         self.jam_lapor = jam_lapor
-
-    def __repr__(self):
-        return f"Task added Succesfullys {self.nama_mesin}"
-
 
 @app.route('/')
 def login():
@@ -48,12 +79,11 @@ def welcome():
     else:
         return render_template('login.html')
 
-
+# this for sending database info when rendering the html - DO NOT DELETE
 @app.route('/dashboard')
 def dashboard():
-    equipments = Inputs.query.all()
+    equipments = Kerusakan.query.all()
     return render_template('dashboard.html', equipments=equipments)
-
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def masuk():
@@ -66,19 +96,53 @@ def masuk():
 
     tanggal = datetime.datetime.strptime(tanggal_lapor, '%Y-%m-%d').date()
     jam = datetime.datetime.strptime(jam_lapor, '%H:%M').time()
-    kerusakan = Inputs(id_mesin, jenis_pekerjaan, bagian, tanggal, jam)
+    kerusakan = Kerusakan(id_mesin, jenis_pekerjaan, bagian, tanggal, jam)
 
     try:
         with app.app_context():
             db.session.add(kerusakan)
             db.session.commit()
 
-        equipments = Inputs.query.all()
+        equipments = Kerusakan.query.all()
 
-        return render_template('dashboard.html', equipments=equipments)
+        render_template('dashboard.html', equipments=equipments)
+        return redirect(url_for("dashboard"))
 
     except:
         return "There Is an issue adding it"
+
+
+@app.route('/daftar_sucad')
+def daftar_sucad_redirect():
+    sucads = SukuCadang.query.all()
+    return render_template('daftar_sucad.html', sucads=sucads)
+
+@app.route('/daftar_sucad', methods=['GET', 'POST'])
+def input_daftar_sucad():
+    sucad_id = request.form.get('sucad_id')
+    sucad_nama = request.form.get('sucad_nama')
+    sucad_min_stok = request.form.get('sucad_min_stok')
+    sucad_aktual_stok = request.form.get('sucad_aktual_stok')
+    
+    existed = SukuCadang.query.filter_by(id_SukuCadang=sucad_id).first()
+    if existed:
+        return 'Sucad ID already exists in the database'
+    else:
+        sucad = SukuCadang(sucad_id,sucad_nama,sucad_min_stok,sucad_aktual_stok)
+
+        try:
+            with app.app_context():
+                db.session.add(sucad)
+                db.session.commit()
+        
+            sucads = SukuCadang.query.all()
+        
+            render_template('daftar_sucad.html', sucads=sucads)
+            return redirect(url_for("daftar_sucad_redirect"))
+    
+        except:
+            return 'There is issue'
+
 
 
 if __name__ == '__main__':

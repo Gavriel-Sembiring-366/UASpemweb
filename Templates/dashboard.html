@@ -16,9 +16,9 @@
             <h1>Maintenance</h1>
         </div>
         <div class="header-text">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Dashboard</a>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Daftar Peralatan</a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Laporan</a>
+            <a href="{{ url_for('daftar_sucad_redirect') }}">Daftar Sucad</a>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Pencegahan</a>
             <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Perbaikan</a>
         </div>
@@ -27,11 +27,21 @@
     <div class="content-container">
         <div class = "going-project">
             {% for equipment in equipments %}
-            <div class="card" style="width: 18rem; height: 200px;">
+            <div class="card" style="width: 18rem; height: 150px;">
+                
                 <div class="card-body">
+
+                    {% if equipment.jenis_pekerjaan == 'mekanikal' %}
+                    <div class="card-item-bg" style="background-color: #ffce79;"></div>
+                    {% elif equipment.jenis_pekerjaan == 'elektrikal' %}
+                    <div class="card-item-bg" style="background-color: #ff7e7e;"></div>
+                    {% elif equipment.jenis_pekerjaan == 'sipil' %}
+                    <div class="card-item-bg" style="background-color: #8b6bff;"></div>
+                    {% endif %}
+
                     <h5 class="card-title"> {{ equipment.id_mesin }} | {{ equipment.jenis_pekerjaan }} </h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ equipment.bagian }}</h6>
+                    <p class="card-text">Laporan ini dibuat pada {{ equipment.tanggal_lapor }} jam {{ equipment.jam_lapor }}  </p>
                 </div>
 
             </div>
@@ -49,23 +59,29 @@
                         </tr>
 
                         <tr>
-                            <td>Jenis Pekerjaan:</td>
-                            <td><input type="text" name="jenis_pekerjaan" required/></td>
+                            <td>Bagian:</td>
+                            <td><input type="text" name="bagian" required/></td>
                         </tr>
 
                         <tr>
-                            <td>Bagian:</td>
-                            <td><input type="text" name="bagian"/></td>
+                            <td>Jenis Pekerjaan:</td>
+                            <td>  
+                                <select name="jenis_pekerjaan" id="jenis_pekerjaan">
+                                    <option value="mekanikal">Mekanikal</option>
+                                    <option value="elektrikal">Elektrikal</option>
+                                    <option value="sipil">Sipil</option>
+                                </select>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Tanggal Lapor:</td>
-                            <td><input type="date" name="tanggal_lapor"/></td>
+                            <td><input type="date" name="tanggal_lapor" required/></td>
                         </tr>
 
                         <tr>
                             <td>Jam Lapor:</td>
-                            <td><input type="time" name="jam_lapor"/></td>
+                            <td><input type="time" name="jam_lapor" required/></td>
                         </tr>
 
                         <tr>

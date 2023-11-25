@@ -4,7 +4,7 @@ body {
     padding-right: 0px;
     overflow-x: hidden;
     background-color: #fffcfc;
-    height: auto;
+    height: 100vh;
 }
 
 /* HEADER START */
@@ -15,7 +15,7 @@ body {
     align-items: center;
     background-color: #191919;
     color: #fff;
-    width: 100%;
+    width: 100vw;
     height: 70px;
 }
 .header-logo{
@@ -51,21 +51,16 @@ body {
 /* MAIN CONTENT START */
 .content-container {
     display: flex;
-    background-color: #4b4c4d;
+    background-color: #716565;
     color: #fff;
-    height: 100%;
+    height: 92%;
+    width: 100vw;
     display: grid;
     padding-left: 5px;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
 }
 
-.card{
-    margin-top: 10px;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: #000000;
-}
+
 
 /* TABLE START */
 .going-project{
@@ -73,46 +68,49 @@ body {
     flex-wrap: wrap;
     padding: 10px 10px 10px 10px;
     overflow-y: scroll;
-    background-color: #abababaa;
+    background-color: #abababaa ;
     color: #fff;
     width: 100%;
-    height: 45vw;
+    height: 100%;
     border-right: #3e3c3c solid 5px;
 
     grid-column: 1;
     grid-row: 1;
 }
 
-.styled-table {
-    border-collapse: collapse;
-    margin-top: 1.2%;
+.card{
+    margin-top: 15px;
+    margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
-    border-bottom: black 5px solid;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    overflow-y:scroll;
-    display:block;
-    height: 43vw;
+    box-shadow:  5px 5px #2b2b2b;
+    height: 50px;
+    overflow: hidden
+}
+.card-body{
+    overflow: hidden;
+}
+.card-item-bg{
+    height: 150px;
+    width: 150px;
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+    border-radius: 50%;
+    transition: all 1s ease;
 }
 
-.styled-table thead th{
-    position: sticky;
-    top: 0px;
-    background-color: #333;
+.card:hover .card-item-bg{
+    transform: scale(10);
 }
-.styled-table thead tr {
-    color: #ffffff;
-    text-align: left;
+
+.card-title, .card-subtitle, .card-text{
+    z-index: 2;
+    position: relative;
 }
-.styled-table th,td{
-    padding: 12px 15px;
-}
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
+
+
 /* TABLE END */
 
 .info-container{
@@ -138,6 +136,15 @@ body {
     grid-row: 1;
     grid-column: 1;
 }
+#info1 select{
+    width: 200px;
+    height: 25px;
+}
+#info1 input{
+    width: 200px;
+}
+
+
 #info2{
     grid-row: 2;
     grid-column: 1;
@@ -158,7 +165,6 @@ body {
     height: 25px;
 }
 
-
 #submit{
 text-align:center;
 }
@@ -167,7 +173,7 @@ text-align:center;
 margin-top: 20px;
 margin-bottom: 20px;
 text-align:center;
-height: 45px;
+height: auto;
 }
 
 #input-button{

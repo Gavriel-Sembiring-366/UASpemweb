@@ -1,16 +1,20 @@
-from main import app, Inputs
-from main import db
-import datetime
+from main import db, app, Mesin, SukuCadang, Kerusakan
 
 # with app.app_context():
-#     db.drop_all()
+#      db.drop_all()
 
-# app.app_context().push()
-# db.create_all()
+#app.app_context().push()
+#db.create_all()
+
+# with app.app_context():
+
+#     sucads = Kerusakan.query.all()
+#     for sukad in sucads:
+#         print(sukad)
+
 
 with app.app_context():
-     kerusakan = Inputs("idedacsdaswd", "jenis", "bagaian", datetime.date(2015,3,12), datetime.time(9,10,23))
-     db.session.add(kerusakan)
-
-     equipments = Inputs.query.all()
-     print(equipments)
+    for i in range(1,16):
+        asu = SukuCadang("ID SUCAD " + str(i), "Sucad " + str(i) , "minimum " + str(i), "aktual " + str(i))
+        db.session.add(asu)
+        db.session.commit()
